@@ -1,0 +1,74 @@
+[
+      {
+            "customerId": 1,
+            "orderItems": [
+                {"itemId": 1, "itemName": "Baseball", "itemCost": 9.99},
+                {"itemId": 2, "itemName": "Bat", "itemCost": 19.99}
+            ]
+      },
+      {
+            "customerId": 2,
+            "orderItems": [
+                {"itemId": 3, "itemName": "Basketball", "itemCost": 7.99},
+                {"itemId": 4, "itemName": "Shoes", "itemCost": 199.99}
+            ]
+      },
+      {
+            "customerId": 3,
+            "orderItems": [
+                {"itemId": 5, "itemName": "Frisbee", "itemCost": 2.99},
+                {"itemId": 6, "itemName": "Hat", "itemCost": 5.99}
+            ]
+      },
+      {
+            "customerId": 4,
+            "orderItems": [
+                {"itemId": 7, "itemName": "Boomerang", "itemCost": 29.99},
+                {"itemId": 8, "itemName": "Helmet", "itemCost": 19.99},
+                {"itemId": 9, "itemName": "Kangaroo Saddle", "itemCost": 179.99}
+            ]
+      },
+      {
+            "customerId": 5,
+            "orderItems": [
+                {"itemId": 10, "itemName": "Budgie Smugglers", "itemCost": 19.99},
+                {"itemId": 11, "itemName": "Swimming Cap", "itemCost": 5.49}
+            ]
+      },
+      {
+            "customerId": 6,
+            "orderItems": [
+                {"itemId": 12, "itemName": "Bow", "itemCost": 399.99},
+                {"itemId": 13, "itemName": "Arrows", "itemCost": 69.99}
+            ]
+      },
+      {
+            "customerId": 7,
+            "orderItems": [
+                {"itemId": 14, "itemName": "Baseball", "itemCost": 9.99},
+                {"itemId": 15, "itemName": "Bat", "itemCost": 19.99}
+            ]
+      },
+      {
+            "customerId": 8,
+            "orderItems": [
+                {"itemId": 16, "itemName": "Surfboard", "itemCost": 299.99},
+                {"itemId": 17, "itemName": "Wax", "itemCost": 5.99},
+                {"itemId": 18, "itemName": "Shark Repellent", "itemCost": 15.99}
+            ]
+      },
+      {
+            "customerId": 9,
+            "orderItems": [
+                {"itemId": 19, "itemName": "Saddle", "itemCost": 599.99},
+                {"itemId": 20, "itemName": "RitemIding cap", "itemCost": 79.99}
+            ]
+      },
+      {
+            "customerId": 10,
+            "orderItems": [
+                {"itemId": 21, "itemName": "Baseball", "itemCost": 9.99},
+                {"itemId": 22, "itemName": "Bat", "itemCost": 19.99}
+            ]
+      }
+]

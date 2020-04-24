@@ -1,0 +1,117 @@
+<h3>Add Customer</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form #customerForm="ngForm" (ngSubmit)="onSubmit(customerForm)">
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Full Name Required" required
+             [(ngModel)]="customer.name" name="name" #name="ngModel"
+             [ngClass]="{'is-invalid': (name.touched || name.dirty) && !name.valid }" />
+
+      <span class="invalid-feedback">
+        <span *ngIf="name.errors?.required">
+          Full Name Required,
+        </span>
+      </span>
+
+    </div>
+
+    <div class="form-group">
+      <label for="name">Address</label>
+      <input type="text" class="form-control" id="streetAddress" placeholder="Street Address Required" required
+             [(ngModel)]="customer.streetAddress" name="streetAddress" #streetaddress="ngModel"
+             [ngClass]="{'is-invalid': (streetaddress.touched || streetaddress.dirty) && !streetaddress.valid }" />
+
+      <span class="invalid-feedback">
+        <span *ngIf="streetaddress.errors?.required">
+          Street Address Required.
+        </span>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="name">City</label>
+      <input type="text" class="form-control" id="city" placeholder="City Name Required" required
+      [(ngModel)]="customer.city" name="city"  #city="ngModel"
+             [ngClass]="{'is-invalid': (city.touched || city.dirty) && !city.valid }" />
+
+      <span class="invalid-feedback">
+        <span *ngIf="city.errors?.required">
+          City is Required.
+        </span>
+      </span>
+
+    </div>
+
+    <div class="form-group">
+      <label for="name">State</label>
+      <input type="text" class="form-control" id="state" placeholder="Two Digit State Code Required" required maxlength="2"
+             [(ngModel)]="customer.state" name="state" #state="ngModel"
+             [ngClass]="{'is-invalid': (state.touched || state.dirty) && !state.valid }" />
+
+      <span class="invalid-feedback">
+        <span *ngIf="state.errors?.required">
+          State is required.
+        </span>
+        <span *ngIf="state.errors?.maxlength">
+          State value   cannot exceed two characters.
+        </span>
+      </span>
+
+    </div>
+
+    <div class="form-group">
+      <label for="name">ZipCode</label>
+      <input type="text" class="form-control" id="zipcode" placeholder="Five Digit State Required" required minlength="5" maxlength="5"
+             [(ngModel)]="customer.zipCode" name="zipcode" #zipcode="ngModel"
+             [ngClass]="{'is-invalid': (zipcode.touched || zipcode.dirty) && !zipcode.valid }" />
+
+      <span class="invalid-feedback">
+        <span *ngIf="zipcode.errors?.required">
+          Zipcode is required.
+        </span>
+        <span *ngIf="zipcode.errors?.minlength">
+          Need five digit zipcode
+        </span>
+        <span *ngIf="zipcode.errors?.maxlength">
+          Zipcode cannot exceed two characters.
+        </span>
+      </span>
+
+    </div>
+
+
+    <div class="form-group">
+      <label for="name">Email ID</label>
+      <input type="text" class="form-control" id="emailId" placeholder="xxx@yyy.zzz"  required email
+             [(ngModel)]="customer.emailId" name="emailId"  #emailid="ngModel"
+             [ngClass]="{'is-invalid': (emailid.touched || emailid.dirty) && !emailid.valid }" />
+
+      <span class="invalid-feedback">
+        <span *ngIf="emailid.errors?.required">
+          EmailID is required.
+        </span>
+        <span *ngIf="emailid.errors?.email">
+          Invalid email format.
+        </span>
+      </span>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!customerForm.valid">Submit</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-success" (click)="cancel()">Cancel</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <button class="btn btn-success" (click)="newCustomer()">Add New Customer</button>
+  &nbsp;&nbsp;&nbsp;
+  <a routerLink="/customers"><button class="btn btn-success pull-right">View All Customers</button></a>
+</div>
+
+<br />
+<br />
+<div class="alert alert-danger"
+     *ngIf="errorMessage">
+  {{errorMessage}}
+</div>

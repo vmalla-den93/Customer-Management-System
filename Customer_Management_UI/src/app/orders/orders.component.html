@@ -1,0 +1,35 @@
+<div *ngIf="customer">
+  <h1>Customer Profile:</h1>
+  Name: {{ customer.name | capitalize }}<br />
+  Address: {{ customer.streetAddress}}<br />
+  City: {{ customer.city }}
+
+  <br />
+  <br />
+  <h2>Orders for {{ customer.name | capitalize }}</h2>
+  <a [routerLink]="['/addorder',customer.customerId]"><button class="btn btn-success pull-right">Record Customer Order</button></a>
+
+  <table class="table table-hover orders-table">
+    <thead >
+      <tr>
+        <td>OrderDate</td>
+        <td>ItemName</td>
+        <td>ItemCost</td>
+      </tr>
+
+    </thead>
+    <tbody *ngFor="let order of orders">
+      <tr *ngFor="let orderItem of order.orderItems">
+        <td>{{ order.orderDate }}</td>
+        <td>{{ orderItem.itemName }}</td>
+        <td>{{ orderItem.itemCost | currency:'USD':'symbol' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="!customer">
+  No customer found
+</div>
+<br />
+<a routerLink="/customers"><button class="btn btn-success pull-right">View All Customers</button></a>
+

@@ -1,0 +1,65 @@
+<div *ngIf="customer">
+  <div class="row">
+    <div [hidden]="isordersubmitted">
+      <form [formGroup]="addorderform" #orderform (ngSubmit)="submitOrder(orderform)">
+        <div class="card">
+          <div class="card-header">Add Order for {{ customer.name }}</div>
+          <!-- Modal body -->
+          <div class="card-body" formArrayName="orderItems">
+            <div class="row" *ngFor="let orderitem of addorderform.controls.orderItems.controls; let i=index ">
+              <div *ngIf="addorderform.controls.orderItems.controls.length > 1 && i > 0"></div><br>
+
+              <!-- group name in this case row index -->
+              <div [formGroupName]="i" class="row">
+                <div class="form-group col-6">
+                  <!-- item id field hidden-->
+                    <!-- item name input field -->
+                    <input type="text" class="form-control" (change)="onItemSelect(i)" placeholder="Item name" formControlName="itemName"
+                           list="dynmicItemNames" required [ngClass]="{ 'is-invalid': submitted && orderitem.controls.itemName.errors }" />
+                    <datalist id="dynmicItemNames">
+                      <option *ngFor="let item of items" [value]="item.itemName">{{ item.itemName }}</option>
+                    </datalist>
+                    <!-- input field error -->
+                    <span class="invalid-feedback">
+                      <span *ngIf="orderitem.controls.itemName.required">
+                        Item name is required.
+                      </span>
+                    </span>
+                  </div>
+                  <div class="form-group col-6">
+                    <!-- Item price input field -->
+                    <input type="number" placeholder="Item price" [value]="orderitem.value.itemCost" formControlName="itemCost" />
+                  </div>
+                  <!-- row delete button, hidden if there is just one row -->
+                <div class="form-group col-6">
+                  <button class="btn btn-danger" type="button"
+                          *ngIf="addorderform.controls.orderItems.controls.length > 1" (click)="removeItem(i)">
+                    Remove
+                  </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" (click)="addItem()">Add Item</button>
+          <button type="submit" class="btn btn-success" [disabled]="!addorderform.valid">Submit Order</button>
+          <button type="button" class="btn btn-danger" (click)="close()">Close</button>
+        </div>
+
+      </form>
+    </div>
+    <div [hidden]="!isordersubmitted">
+      <h4>Customer Order Created!!</h4>
+    </div>
+  </div>
+  <div *ngIf="!customer">
+    No customer found
+  </div>
+  <br />
+  <a routerLink="/customers"><button class="btn btn-success pull-right">View All Customers</button></a>
+
+

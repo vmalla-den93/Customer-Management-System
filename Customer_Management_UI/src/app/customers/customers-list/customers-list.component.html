@@ -1,0 +1,48 @@
+<div>
+  <app-filter-textbox (changed)="filter($event)"></app-filter-textbox>
+  &nbsp;&nbsp;&nbsp;
+  <a routerLink="/addcustomer" class="btn btn-primary active" role="button" routerLinkActive="active">Add Customer</a>
+</div>
+<br />
+<br />
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Action</th>
+        <th (click)="sort('name')">Name</th>
+        <th (click)="sort('emailId')">Email Address</th>
+        <th (click)="sort('city')">City</th>
+        <th (click)="sort('orderTotal')">Order Total</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let cust of filteredCustomers">
+      <td>
+        <button (click)="deleteCustomer(cust.customerId)" class="btn btn-danger">Delete</button>
+        <a [routerLink]="['/editcustomer', cust.customerId]">
+          <button class="btn btn-info" style="margin-left: 10px">Edit</button>
+        </a>
+      </td>
+      <td>
+        <a [routerLink]="['/orders', cust.customerId]">
+          {{ cust.name | capitalize }}
+        </a>
+      </td>
+      <td>{{ cust.emailId }}</td>
+      <td>{{ cust.city }}</td>
+      <td>{{ cust.orderTotal | currency:currencyCode:'symbol' }}
+    </tr>
+    <tr *ngIf="filteredCustomers && filteredCustomers.length">
+      <td colspan="2">&nbsp;</td>
+      <td colspan="2"></td>
+      <td ng-change="customersOrderTotal">
+        {{ customersOrderTotal | currency:currencyCode:'symbol' }}
+      </td>
+    </tr>
+    <tr *ngIf="!filteredCustomers || !filteredCustomers.length">
+        <td colspan="4">No customers found</td>
+    </tr>
+</table>
+Number of Customers: {{ filteredCustomers.length }}
+<br />
+
+

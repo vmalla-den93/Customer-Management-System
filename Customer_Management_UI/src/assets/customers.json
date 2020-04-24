@@ -1,0 +1,34 @@
+[
+      {
+            "customerId": 1,
+            "name": "Sameera Malladi",
+            "city": " Phoenix ",
+            "orderTotal": 29.98
+      },
+      {
+            "customerId": 2,
+            "name": "John Winson",
+            "city": "Los Angeles ",
+            "orderTotal": 207.98
+      },
+      {
+            "customerId": 3,
+            "name": "Donald Thomas",
+            "city": " Las egas ",
+            "orderTotal": 8.98
+      },
+      {
+            "customerId": 4,
+            "name": "Leona Adams",
+            "city": "Seattle",
+            "orderTotal": 49.98
+      },
+      {
+            "customerId": 5,
+            "name": "Hara Cruise",
+            "city": "Seattle",
+            "orderTotal": 25.48
+      }
+
+ 
+ ]
