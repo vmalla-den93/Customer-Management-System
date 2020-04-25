@@ -19,6 +19,7 @@ export class AddOrderComponent implements OnInit {
   items: IOrderItem[] = [];
   isordersubmitted = false;
   addorderform: FormGroup;
+  orderDate: Date = new Date();
 
  
 
@@ -30,6 +31,7 @@ export class AddOrderComponent implements OnInit {
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('customerId');
     console.log(id)
+    console.log(this.orderDate)
 
     this.dataService.getCustomer(id).subscribe((customer: ICustomer) => {
       this.customer = customer;
@@ -44,7 +46,8 @@ export class AddOrderComponent implements OnInit {
     this.addorderform = this.fb.group({
       orderItems: this.fb.array([
         this.getItem()
-      ])
+      ]),
+      orderDate: [this.orderDate, [Validators.required]]
     });
 
 
@@ -71,7 +74,7 @@ export class AddOrderComponent implements OnInit {
     
     const customerItems = <IOrderItem[]>this.addorderform.controls['orderItems'].value
     this.customerOrder.customerId = this.customer.customerId
-    this.customerOrder.orderDate = new Date();
+    this.customerOrder.orderDate = this.addorderform.controls['orderDate'].value
     this.customerOrder.orderItems = customerItems;
     this.saveOrder()
     
