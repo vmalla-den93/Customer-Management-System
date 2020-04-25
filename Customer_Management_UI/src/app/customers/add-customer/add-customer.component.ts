@@ -31,7 +31,6 @@ export class AddCustomerComponent implements OnInit {
   save() {
     this.dataService.addCustomer(this.customer)
       .subscribe(data => {
-        console.log(data)
         this.customer = data
         this.submitted = true
       },
@@ -49,7 +48,6 @@ export class AddCustomerComponent implements OnInit {
 
 
   onSubmit(customerForm: NgForm) {
-    console.log(this.customer)
     this.save()
 
     customerForm.resetForm()

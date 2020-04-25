@@ -18,6 +18,7 @@
     <tr *ngFor="let cust of filteredCustomers">
       <td>
         <button (click)="deleteCustomer(cust.customerId)" class="btn btn-danger">Delete</button>
+      
         <a [routerLink]="['/editcustomer', cust.customerId]">
           <button class="btn btn-info" style="margin-left: 10px">Edit</button>
         </a>

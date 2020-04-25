@@ -24,7 +24,7 @@ export class SorterService {
               bVal = b[prop];
             }
 
-            // Fix issues that spaces before/after string value can cause such as ' San Francisco'
+            
             if (this.isString(aVal)) { aVal = aVal.trim().toUpperCase(); }
             if (this.isString(bVal)) { bVal = bVal.trim().toUpperCase(); }
 

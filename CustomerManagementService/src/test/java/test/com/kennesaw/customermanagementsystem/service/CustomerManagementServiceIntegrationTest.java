@@ -25,9 +25,9 @@ import com.kennesaw.customermanagementsystem.manager.CustomerManager;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class RewardsManagementServiceIntegrationTest {
+public class CustomerManagementServiceIntegrationTest {
 	
-	private static final Logger LOGGER = Logger.getLogger(RewardsManagementServiceIntegrationTest.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(CustomerManagementServiceIntegrationTest.class.getName());
 	
 	@Autowired
 	CustomerManagementService service;
@@ -95,8 +95,8 @@ public class RewardsManagementServiceIntegrationTest {
 				testRestTemplate.exchange(createURLWithPort("/cmd/getCustomer/" + expectedResponse.getCustomerId()),
 						HttpMethod.GET, entity, CustomerInfo.class);
 		
-		LOGGER.info("testGetCustomerAndPurchaseInfo_Success: " + responseEntity.getStatusCodeValue() + ":::" + responseEntity.getBody());
-		LOGGER.info("testGetCustomerAndPurchaseInfo_Success expectedResponse: " + expectedResponse.toString());
+		LOGGER.info("testGetCustomerInfo_Success: " + responseEntity.getStatusCodeValue() + ":::" + responseEntity.getBody());
+		LOGGER.info("testGetCustomerInfo_Success expectedResponse: " + expectedResponse.toString());
 		Assert.assertNotNull(responseEntity.getBody());
 		Assert.assertTrue(responseEntity.getStatusCode().equals(HttpStatus.OK));
 		Assert.assertTrue(responseEntity.getBody().getEmailId().equals(expectedResponse.getEmailId()));

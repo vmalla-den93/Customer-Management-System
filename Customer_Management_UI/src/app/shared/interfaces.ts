@@ -7,7 +7,6 @@ export interface ICustomer {
     zipCode: string;
     emailId: string;
     orderTotal?: number;
-    customerSince: any;
 }
 
 export interface IOrder {

@@ -3,7 +3,6 @@ package com.kennesaw.customermanagementsystem.manager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ import com.kennesaw.customermanagementsystem.to.ItemInfo;
 import com.kennesaw.customermanagementsystem.to.OrderInfo;
 import com.kennesaw.customermanagementsystem.to.CustomerManagementResponse;
 import com.kennesaw.customermanagementsystem.util.Constants;
-
-import io.micrometer.core.instrument.util.StringUtils;
 
 @Component
 public class CustomerManager {

@@ -69,7 +69,7 @@ export class CustomersListComponent implements OnInit {
     });
     
   }
-
+   
   deleteCustomer(customerId: number) {
     this.dataService.deleteCustomer(customerId)
       .subscribe(
@@ -79,5 +79,6 @@ export class CustomersListComponent implements OnInit {
         },
         error => console.log(error));
   }
+
 
 }

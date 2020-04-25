@@ -15,7 +15,6 @@ import com.kennesaw.customermanagementsystem.config.DatabaseConfig;
 import com.kennesaw.customermanagementsystem.to.CustomerInfo;
 import com.kennesaw.customermanagementsystem.to.ItemInfo;
 import com.kennesaw.customermanagementsystem.to.OrderInfo;
-import com.kennesaw.customermanagementsystem.util.Constants;
 
 @Component
 public class Repository {
@@ -112,13 +111,6 @@ public class Repository {
 		return sql;
 	}
 	
-	public String buildSelectSqlStatementForOrderInfo(int customerId){
-		String sql = "select items.available_item, items.price, items.type, purchased_items.purchased_date, purchased_items.pre_ordered_flag, purchased_items.customer_id\r\n" + 
-				     "from rms.items JOIN rms.purchased_items ON items.item_id = purchased_items.item_id and purchased_items.customer_id = " + customerId ;
-		LOGGER.info("buildSelectSqlStatementForOrderInfo: " + sql);
-		return sql;
-	}
-	
 	
 	public String buildDeleteSqlStatementForOrderInfo(int customerId){
 		String sql = "delete from cms.orders where customer_id = " + customerId;
@@ -175,25 +167,7 @@ public class Repository {
 		con.close();
 	}
 
-	public OrderInfo getOrderInfo(int customerId) throws SQLException {
-		
-		OrderInfo orderInfo = new OrderInfo();
-		orderInfo.setCustomerId(customerId);
-		List<ItemInfo> purchaseList = new ArrayList<ItemInfo>();
-		ItemInfo itemInfo = new ItemInfo();
 
-			Connection con = getDatabaseConnection();
-			Statement stmt = getStatement(con);
-			ResultSet rs = stmt.executeQuery(buildSelectSqlStatementForOrderInfo(customerId));
-
-			while(rs.next()){
-				//itemInfo = new ItemInfo(rs.getString("available_item"), rs.getFloat("price"), rs.getString("type"), rs.getDate("purchased_date"), rs.getString("pre_ordered_flag"));
-				purchaseList.add(itemInfo);
-			}
-			closeDatabaseConnection(con, stmt);
-			orderInfo.setorderItems(purchaseList);
-		return orderInfo;
-	}
 	
 	public CustomerInfo addNewCustomer(CustomerInfo customer) throws SQLException{
 		String customerEmailId = customer.getEmailId();

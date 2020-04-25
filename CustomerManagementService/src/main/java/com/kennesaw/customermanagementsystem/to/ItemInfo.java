@@ -1,7 +1,5 @@
 package com.kennesaw.customermanagementsystem.to;
 
-import java.sql.Date;
-
 public class ItemInfo {
 
 	private int itemId;

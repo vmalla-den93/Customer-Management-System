@@ -28,14 +28,14 @@ export class EditCustomerComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('customerId');
     this.dataService.getCustomer(id).subscribe((customer: ICustomer) => {
       this.customer = customer;
-      console.log(customer)
+      
     });
   }
 
   save() {
     this.dataService.updateCustomer(this.customer)
       .subscribe(data => {
-        console.log(data)
+        
         this.submitted = true
       },
         error => {
@@ -52,7 +52,7 @@ export class EditCustomerComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.customer)
+    
     this.save()
     
   }

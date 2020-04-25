@@ -30,17 +30,13 @@ export class AddOrderComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('customerId');
-    console.log(id)
-    console.log(this.orderDate)
 
     this.dataService.getCustomer(id).subscribe((customer: ICustomer) => {
       this.customer = customer;
-      console.log(customer)
     });
 
     this.dataService.getItems().subscribe((items: IOrderItem[]) => {
       this.items = items;
-      console.log(this.items)
     });
 
     this.addorderform = this.fb.group({
@@ -81,10 +77,8 @@ export class AddOrderComponent implements OnInit {
   }
 
   saveOrder() {
-    console.log("On Save Order")
-    console.log(this.customerOrder)
     this.dataService.addCustomerOrder(this.customerOrder).subscribe(data => {
-      console.log(data)
+
       this.isordersubmitted = true
     },
       error => {
@@ -102,8 +96,7 @@ export class AddOrderComponent implements OnInit {
     const selectedItem = <IOrderItem>this.searchForItemIdbyname(control.at(i).value.itemName)[0];
     control.at(i).value.itemCost = selectedItem.itemCost;
     control.at(i).value.itemId = selectedItem.itemId;
-    console.log(control.value);
-    
+   
 
   }
 

@@ -18,13 +18,12 @@ import com.kennesaw.customermanagementsystem.to.CustomerInfo;
 import com.kennesaw.customermanagementsystem.to.CustomerManagementResponse;
 import com.kennesaw.customermanagementsystem.to.OrderInfo;
 import com.kennesaw.customermanagementsystem.to.ItemInfo;
-import com.kennesaw.customermanagementsystem.util.Constants;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class RewardsManagerIntegrationTest {
+public class CustomerManagerIntegrationTest {
 
-	private static final Logger LOGGER = Logger.getLogger(RewardsManagerIntegrationTest.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(CustomerManagerIntegrationTest.class.getName());
 	
 	@Autowired
 	CustomerManager manager;
@@ -41,7 +40,7 @@ public class RewardsManagerIntegrationTest {
 		String emailId = "springtest@localhost.com";
 		CustomerInfo customer = new CustomerInfo(0, name, streetAddress, city, state, zipcode, emailId,0.0f);
 		CustomerManagementResponse response = manager.addCustomer(customer);
-		LOGGER.info("test_processCustomer_AddCustomer_Success: " + response.toString());
+		LOGGER.info("test_AddCustomer_Success: " + response.toString());
 		Assert.assertNotNull(response);
 		Assert.assertNotNull(response.getCustomerInfo());
 		Assert.assertTrue(response.getCustomerInfo().getCustomerId() > 0);
@@ -57,7 +56,7 @@ public class RewardsManagerIntegrationTest {
 		String emailId = "springtest2@localhost.com";
 		CustomerInfo customer = new CustomerInfo(0, name, streetAddress, city, state, zipcode, emailId,0.0f);
 		CustomerManagementResponse response = manager.addCustomer(customer);
-		LOGGER.info("test_processCustomer_AddCustomer_Success: " + response.toString());
+		LOGGER.info("test_AddCustomer_Success2: " + response.toString());
 		Assert.assertNotNull(response);
 		Assert.assertNotNull(response.getCustomerInfo());
 		Assert.assertTrue(response.getCustomerInfo().getCustomerId() > 0);
@@ -72,7 +71,7 @@ public class RewardsManagerIntegrationTest {
 		customer.setCity(newcity);
 		customer.setState(newstate);
 		CustomerManagementResponse response = manager.updateCustomer(customer);
-		LOGGER.info("test_processCustomer_UpdateCustomer_Success: " + response.toString());
+		LOGGER.info("test_UpdateCustomer_Success: " + response.toString());
 		Assert.assertNotNull(response);
 		Assert.assertNotNull(response.getCustomerInfo());
 		Assert.assertNull(response.getErrorResponse());
@@ -81,7 +80,7 @@ public class RewardsManagerIntegrationTest {
 	}
 	
 	@Test
-	public void test_processCustomer_UpdateCustomer_Failure() {
+	public void test_UpdateCustomer_Failure() {
 		String newcity = "New York";
 		String newstate = "NY";
 		String emailId = "springtest2@localhost.com";
@@ -91,14 +90,14 @@ public class RewardsManagerIntegrationTest {
 		customer.setState(newstate);
 		customer.setEmailId(newemailId);
 		CustomerManagementResponse response = manager.updateCustomer(customer);
-		LOGGER.info("test_processCustomer_UpdateCustomer_Failure: " + response.toString());
+		LOGGER.info("test_UpdateCustomer_Failure: " + response.toString());
 		Assert.assertNotNull(response);
 		Assert.assertNotNull(response.getCustomerInfo());
 		Assert.assertNotNull(response.getErrorResponse());
 	}
 	
 	@Test
-	public void test_processCustomer_addCustomerOrder_Success() {
+	public void test_addCustomerOrder_Success() {
 		String emailId = "springtest@localhost.com";
 		int customerId = manager.getCustomer(emailId).getCustomerId();
 		Date orderDate = new Date(System.currentTimeMillis());
@@ -112,7 +111,7 @@ public class RewardsManagerIntegrationTest {
 		customerOrder.setorderItems(orderItems);
 		
 		CustomerManagementResponse response = manager.addCustomerOrder(customerOrder);
-		LOGGER.info("test_processCustomer_addCustomerOrder_Success: " + response.toString());
+		LOGGER.info("test_addCustomerOrder_Success: " + response.toString());
 		Assert.assertNotNull(response);
 		Assert.assertNotNull(response.getOrderInfo());
 		Assert.assertNotNull(response.getErrorResponse());

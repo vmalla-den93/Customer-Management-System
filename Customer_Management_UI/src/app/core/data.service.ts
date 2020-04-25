@@ -9,8 +9,6 @@ import { ICustomer, IOrder, IOrderItem } from '../../app/shared/interfaces';
 @Injectable()
 export class DataService {
    
- 
-
     // Use the following properties if running the app stand-alone with no external dependencies
     //customersUrl = 'assets/customers.json';
   allcustomersUrl = 'http://localhost:8080/cms/getCustomers';
