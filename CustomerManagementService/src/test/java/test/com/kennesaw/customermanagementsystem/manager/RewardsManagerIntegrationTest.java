@@ -1,6 +1,8 @@
 package test.com.kennesaw.customermanagementsystem.manager;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.junit.Assert;
@@ -14,6 +16,8 @@ import com.kennesaw.customermanagementsystem.Application;
 import com.kennesaw.customermanagementsystem.manager.CustomerManager;
 import com.kennesaw.customermanagementsystem.to.CustomerInfo;
 import com.kennesaw.customermanagementsystem.to.CustomerManagementResponse;
+import com.kennesaw.customermanagementsystem.to.OrderInfo;
+import com.kennesaw.customermanagementsystem.to.ItemInfo;
 import com.kennesaw.customermanagementsystem.util.Constants;
 
 @RunWith(SpringRunner.class)
@@ -25,133 +29,129 @@ public class RewardsManagerIntegrationTest {
 	@Autowired
 	CustomerManager manager;
 	
-	@Test
-	public void test_retrieveCustomerAndPurchaseInfo_Success() {
-		int customerId = 1;
-		CustomerManagementResponse response = manager.retrieveCustomerAndPurchaseInfo(customerId);
-		LOGGER.info("test_retrieveCustomerAndPurchaseInfo_Success: " + response.getCustomerInfo().toString() + " purchase info: " + response.getPurchaseInfo().toString());
-		Assert.assertNotNull(response);
-		Assert.assertNotNull(response.getCustomerInfo());
-		Assert.assertNotNull(response.getCustomerInfo().getCustomerId());
-		Assert.assertTrue(response.getCustomerInfo().getCustomerId() == 1);
-		Assert.assertNotNull(response.getPurchaseInfo());
-		Assert.assertNotNull(response.getPurchaseInfo().getorderItems());
-		Assert.assertTrue(response.getPurchaseInfo().getorderItems().size()>0);
-		Assert.assertNull(response.getErrorResponse());
-	}
+	
 	
 	@Test
-	public void test_retrieveCustomerAndPurchaseInfo_Failure() {
-		int customerId = 2;
-		CustomerManagementResponse response = manager.retrieveCustomerAndPurchaseInfo(customerId);
-		LOGGER.info("test_retrieveCustomerAndPurchaseInfo_Failure: " + response.toString());
-		Assert.assertNotNull(response);
-		Assert.assertNotNull(response.getErrorResponse());
-		Assert.assertTrue(response.getErrorResponse().getCode()==Constants.CODE_RESOURCE_NOT_AVAILABLE);
-		Assert.assertTrue(response.getErrorResponse().getMessage().equals(Constants.MESSAGE_RESOURCE_NOT_AVAILABLE));
-	}
-	
-	@Test
-	public void test_generateVipId() {
-		String firstName = "Mariana";
-		String lastName = "Sayago";
-		String generatedVipId = manager.generateCustomerId(firstName, lastName);
-		LOGGER.info("test_generateVipId: " + generatedVipId);
-		Assert.assertTrue(!generatedVipId.isEmpty());
-		Assert.assertTrue(generatedVipId.startsWith("M"));
-	}
-	
-	@Test
-	public void test_processCustomer_AddCustomer_Success() {
-		String firstName = "Mariana";
-		String lastName = "Sayago";
-		CustomerInfo customer = getValidCustomerInfo(2, firstName);
-		CustomerManagementResponse response = manager.processCustomer(customer);
+	public void test_AddCustomer_Success() {
+		String name = "Spring Auto Test";
+		String streetAddress = "localhost 8080";
+		String city = "Keene";
+		String state = "NH";
+		String zipcode = "03441";
+		String emailId = "springtest@localhost.com";
+		CustomerInfo customer = new CustomerInfo(0, name, streetAddress, city, state, zipcode, emailId,0.0f);
+		CustomerManagementResponse response = manager.addCustomer(customer);
 		LOGGER.info("test_processCustomer_AddCustomer_Success: " + response.toString());
 		Assert.assertNotNull(response);
-		Assert.assertNotNull(response.getCustomerId());
 		Assert.assertNotNull(response.getCustomerInfo());
-		Assert.assertNull(response.getErrorResponse());
+		Assert.assertTrue(response.getCustomerInfo().getCustomerId() > 0);
 	}
 	
 	@Test
-	public void test_processCustomer_UpdateCustomer_Success() {
-		String firstName = "Mariana";
-		String lastName = "Sayago";
-		String streetAddress = "2728 Paces Ferry Road";
-		CustomerInfo customer = getValidCustomerInfo(4, firstName);
-		customer.setStreetAddress(streetAddress);
-		CustomerManagementResponse response = manager.processCustomer(customer);
+	public void test_AddCustomer_Success2() {
+		String name = "Spring Auto Test2";
+		String streetAddress = "localhost 8080";
+		String city = "Keene";
+		String state = "NH";
+		String zipcode = "03441";
+		String emailId = "springtest2@localhost.com";
+		CustomerInfo customer = new CustomerInfo(0, name, streetAddress, city, state, zipcode, emailId,0.0f);
+		CustomerManagementResponse response = manager.addCustomer(customer);
+		LOGGER.info("test_processCustomer_AddCustomer_Success: " + response.toString());
+		Assert.assertNotNull(response);
+		Assert.assertNotNull(response.getCustomerInfo());
+		Assert.assertTrue(response.getCustomerInfo().getCustomerId() > 0);
+	}
+	
+	@Test
+	public void test_UpdateCustomer_Success() {
+		String newcity = "New York";
+		String newstate = "NY";
+		String emailId = "springtest@localhost.com";
+		CustomerInfo customer = manager.getCustomer(emailId);
+		customer.setCity(newcity);
+		customer.setState(newstate);
+		CustomerManagementResponse response = manager.updateCustomer(customer);
 		LOGGER.info("test_processCustomer_UpdateCustomer_Success: " + response.toString());
 		Assert.assertNotNull(response);
-		Assert.assertNotNull(response.getCustomerId());
 		Assert.assertNotNull(response.getCustomerInfo());
 		Assert.assertNull(response.getErrorResponse());
-		Assert.assertTrue(response.getCustomerInfo().getStreetAddress().equalsIgnoreCase(streetAddress));
+		Assert.assertTrue(response.getCustomerInfo().getCity().equalsIgnoreCase(newcity));
+		Assert.assertTrue(response.getCustomerInfo().getState().equalsIgnoreCase(newstate));
 	}
 	
 	@Test
 	public void test_processCustomer_UpdateCustomer_Failure() {
-		String firstName = "Mariana";
-		String lastName = "Sayago";
-		String streetAddress = "9999 Paces Ferry Road";
-		CustomerInfo customer = getValidCustomerInfo(1, firstName);
-		customer.setStreetAddress(streetAddress);
-		CustomerManagementResponse response = manager.processCustomer(customer);
+		String newcity = "New York";
+		String newstate = "NY";
+		String emailId = "springtest2@localhost.com";
+		String newemailId = "springtest@localhost.com";
+		CustomerInfo customer = manager.getCustomer(emailId);
+		customer.setCity(newcity);
+		customer.setState(newstate);
+		customer.setEmailId(newemailId);
+		CustomerManagementResponse response = manager.updateCustomer(customer);
 		LOGGER.info("test_processCustomer_UpdateCustomer_Failure: " + response.toString());
 		Assert.assertNotNull(response);
-		Assert.assertNotNull(response.getCustomerId());
 		Assert.assertNotNull(response.getCustomerInfo());
 		Assert.assertNotNull(response.getErrorResponse());
 	}
 	
 	@Test
+	public void test_processCustomer_addCustomerOrder_Success() {
+		String emailId = "springtest@localhost.com";
+		int customerId = manager.getCustomer(emailId).getCustomerId();
+		Date orderDate = new Date(System.currentTimeMillis());
+		OrderInfo customerOrder = new OrderInfo();
+		List<ItemInfo> orderItems = new ArrayList<ItemInfo>();
+		orderItems.add(new ItemInfo(3,"Shoes",7.99f));
+		orderItems.add(new ItemInfo(6,"Hat",5.99f));
+		
+		customerOrder.setCustomerId(customerId);
+		customerOrder.setOrderDate(orderDate);
+		customerOrder.setorderItems(orderItems);
+		
+		CustomerManagementResponse response = manager.addCustomerOrder(customerOrder);
+		LOGGER.info("test_processCustomer_addCustomerOrder_Success: " + response.toString());
+		Assert.assertNotNull(response);
+		Assert.assertNotNull(response.getOrderInfo());
+		Assert.assertNotNull(response.getErrorResponse());
+		Assert.assertTrue(response.getOrderInfo().getorderItems().size() == 2);
+	}
+	
+	@Test
 	public void test_deleteCustomer_Success() {
-		int customerId = 3;
+		String emailId = "springtest@localhost.com";
+		int customerId = manager.getCustomer(emailId).getCustomerId();
 		CustomerManagementResponse response = manager.deleteCustomer(customerId);
 		LOGGER.info("test_deleteCustomer_Success: " + response.toString());
 		Assert.assertNotNull(response);
 		Assert.assertNull(response.getCustomerInfo());
-		Assert.assertNull(response.getPurchaseInfo());
+		Assert.assertNull(response.getOrderInfo());
 		Assert.assertNull(response.getErrorResponse());
 	}
 	
 	@Test
-	public void test_deleteCustomer_Failure() {
-		int customerId = 3;
+	public void test_deleteCustomer_Success2() {
+		String emailId = "springtest2@localhost.com";
+		int customerId = manager.getCustomer(emailId).getCustomerId();
 		CustomerManagementResponse response = manager.deleteCustomer(customerId);
-		LOGGER.info("test_deleteCustomer_Failure: " + response.toString());
+		LOGGER.info("test_deleteCustomer_Success: " + response.toString());
 		Assert.assertNotNull(response);
 		Assert.assertNull(response.getCustomerInfo());
-		Assert.assertNull(response.getPurchaseInfo());
-		Assert.assertNotNull(response.getErrorResponse());
-	}
-	
-	@Test
-	public void test_generateDailyPurchaseReport_Success() {
-		CustomerManagementResponse response = manager.generateDailyPurchaseReport();
-		LOGGER.info("test_generateDailyPurchaseReport_Success: " + response.toString());
-		Assert.assertNotNull(response);
-		Assert.assertNotNull(response.getPurchaseInfo());
-		Assert.assertNotNull(response.getPurchaseInfo().getorderItems());
-		Assert.assertTrue(response.getPurchaseInfo().getorderItems().size()>0);
+		Assert.assertNull(response.getOrderInfo());
 		Assert.assertNull(response.getErrorResponse());
 	}
 	
 	@Test
-	public void test_generateDailyPurchaseReport_Failure() {
-		CustomerManagementResponse response = manager.generateDailyPurchaseReport();
-		LOGGER.info("test_generateDailyPurchaseReport_Failure: " + response.toString());
-		Assert.assertNotNull(response);
-		Assert.assertNotNull(response.getErrorResponse());
-		Assert.assertTrue(response.getErrorResponse().getCode()==Constants.CODE_RESOURCE_NOT_AVAILABLE);
-		Assert.assertTrue(response.getErrorResponse().getMessage().equals(Constants.MESSAGE_RESOURCE_NOT_AVAILABLE));
+	public void test_getCustomers_Success() {
+		List<CustomerInfo> customers = manager.getCustomers();
+		LOGGER.info("test_getCustomers_Success: " + customers);
+		Assert.assertNotNull(customers);
+		Assert.assertTrue(customers.size()>0);
+
 	}
 	
-	public CustomerInfo getValidCustomerInfo(int customerId, String name) {
-		
-		CustomerInfo customer = new CustomerInfo(customerId, name, "1234 Cumberland Parkway", "Atlanta",
-				"GA", "30040", 0.0f);
-		return customer;
-	}
+
+	
 }

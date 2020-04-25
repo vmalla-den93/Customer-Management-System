@@ -76,7 +76,7 @@ export class AddOrderComponent implements OnInit {
     this.customerOrder.customerId = this.customer.customerId
     this.customerOrder.orderDate = this.addorderform.controls['orderDate'].value
     this.customerOrder.orderItems = customerItems;
-    this.saveOrder()
+    this.saveOrder()  
     
   }
 

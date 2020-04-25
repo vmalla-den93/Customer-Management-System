@@ -32,6 +32,7 @@ export class AddCustomerComponent implements OnInit {
     this.dataService.addCustomer(this.customer)
       .subscribe(data => {
         console.log(data)
+        this.customer = data
         this.submitted = true
       },
         error => {

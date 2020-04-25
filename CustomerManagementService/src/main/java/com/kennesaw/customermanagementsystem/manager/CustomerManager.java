@@ -35,6 +35,7 @@ public class CustomerManager {
 
 	public CustomerManagementResponse addCustomer(CustomerInfo customer) {
 		CustomerManagementResponse response = new CustomerManagementResponse();
+		CustomerInfo newcustomer;
 		LOGGER.info("Begin to process customer");
 		//If customerId is empty/null, then generate ID and add customer
 		//Else update customer information with given ID
@@ -44,7 +45,8 @@ public class CustomerManager {
 				LOGGER.info("Adding new customer: " + customer.getName() );
 				try {
 					response.setCustomerInfo(customer);
-					repo.addNewCustomer(customer);
+					newcustomer = repo.addNewCustomer(customer);
+					response.setCustomerInfo(newcustomer);
 				}
 				catch(SQLException e) {
 					LOGGER.info("Exception occurred in processCustomer method during insertion: " + e.getMessage());
@@ -102,6 +104,20 @@ public class CustomerManager {
 		
 		return customer;
 	}
+	
+	public CustomerInfo getCustomer(String emailId) {
+		// TODO Auto-generated method stub
+		CustomerInfo customer = new CustomerInfo();
+		try {
+			 customer= repo.getCustomerInformation(emailId);
+		}
+		catch(SQLException e) {
+			LOGGER.info("Exception occurred during retrieveCustomers: " + e.getMessage());
+			
+		}
+		
+		return customer;
+	}
 
 	public Object getCustomerOrders(int customerId) {
 		// TODO Auto-generated method stub
@@ -130,8 +146,9 @@ public class CustomerManager {
 			if(!repo.isOtherCustomerExists(customer.getCustomerId(), customer.getEmailId())) {
 				LOGGER.info("Updating customer: " + customer );
 				try {
-					response.setCustomerInfo(customer);
-					repo.updateCustomer(customer);
+					
+					CustomerInfo updatedcustomer = repo.updateCustomer(customer);
+					response.setCustomerInfo(updatedcustomer);
 				}
 				catch(SQLException e) {
 					LOGGER.info("Exception occurred in processCustomer method during insertion: " + e.getMessage());
@@ -157,6 +174,7 @@ public class CustomerManager {
 		LOGGER.info("Begin Processng Customer Order:  " + customerOrder);
 		try {
 			repo.addCustomerOrder(customerOrder);
+			response.setOrderInfo(customerOrder);
 		} catch (SQLException e) {
 			LOGGER.info("Exception in adding Customer Order:  " + customerOrder);
 			e.printStackTrace();

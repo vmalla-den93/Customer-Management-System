@@ -29,11 +29,11 @@ public class CustomerManagementResponse {
 		this.customerInfo = customerInfo;
 	}
 
-	public OrderInfo getPurchaseInfo() {
+	public OrderInfo getOrderInfo() {
 		return orderInfo;
 	}
 
-	public void setPurchaseInfo(OrderInfo orderInfo) {
+	public void setOrderInfo(OrderInfo orderInfo) {
 		this.orderInfo = orderInfo;
 	}
 

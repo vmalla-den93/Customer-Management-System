@@ -195,30 +195,25 @@ public class Repository {
 		return orderInfo;
 	}
 	
-	public boolean addNewCustomer(CustomerInfo customer) throws SQLException{
+	public CustomerInfo addNewCustomer(CustomerInfo customer) throws SQLException{
+		String customerEmailId = customer.getEmailId();
+		
 		Connection con = getDatabaseConnection();
 		Statement stmt = getStatement(con);
 		int numberOfRows = stmt.executeUpdate(buildInsertSqlStatementForCustomerInfo(customer));
+		CustomerInfo newCustomer = getCustomerInformation(customerEmailId);
 		closeDatabaseConnection(con, stmt);
-		if(numberOfRows == 1) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return newCustomer;
 	}
 
-	public boolean updateCustomer(CustomerInfo customer) throws SQLException {
+	public CustomerInfo updateCustomer(CustomerInfo customer) throws SQLException {
 		Connection con = getDatabaseConnection();
 		Statement stmt = getStatement(con);
 		int numberOfRows = stmt.executeUpdate(buildUpdateSqlStatementForCustomerInfo(customer));
+		CustomerInfo updatedcustomer = getCustomerInformation(customer.getCustomerId());
 		closeDatabaseConnection(con, stmt);
-		if(numberOfRows == 1) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return updatedcustomer;
+		
 	}
 	
 	public boolean deleteOrderInfo(int customerId) throws SQLException{
