@@ -61,7 +61,7 @@
 
     <div class="form-group">
       <label for="name">ZipCode</label>
-      <input type="text" class="form-control" id="zipcode" value="customer.zipcode" required minlength="5" maxlength="5"
+      <input type="text" class="form-control" id="zipcode" value="customer.zipcode" required pattern="[0-9]{5,5}" minlength="5" maxlength="5"
              [(ngModel)]="customer.zipCode" name="zipcode" #zipcode="ngModel"
              [ngClass]="{'is-invalid': (zipcode.touched || zipcode.dirty) && !zipcode.valid }" />
 
@@ -69,11 +69,8 @@
         <span *ngIf="zipcode.errors?.required">
           Zipcode is required.
         </span>
-        <span *ngIf="zipcode.errors?.minlength">
-          Need five digit zipcode
-        </span>
-        <span *ngIf="zipcode.errors?.maxlength">
-          Zipcode cannot exceed two characters.
+        <span *ngIf="zipcode.errors?.pattern">
+          Invalid ZipCode. Need Five digit value.
         </span>
       </span>
 
@@ -103,7 +100,7 @@
 </div>
 
 <div [hidden]="!submitted">
-  <h4>Updatd successfully!</h4>
+  <h4>Updated successfully!</h4>
   &nbsp;&nbsp;&nbsp;
   <a routerLink="/customers"><button class="btn btn-success pull-right">View All Customers</button></a>
 </div>

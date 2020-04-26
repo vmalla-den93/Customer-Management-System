@@ -12,13 +12,13 @@ Following are frontend & backend components
 # Running the Project Locally
 
 ## Running UI
-1. Install the Angular CLI
+1. Install the Angular CLI, below command will install angular globally.
 
     `npm install -g @angular/cli`
 
-2. Run `npm install` at the root of the UI project folder.
+2. Run `npm install` at the root of the UI project folder. All dependent packages are available in packages.json.
 
-3. Run `ng serve -o`
+3. Run `ng serve -o`, this will compile the application and will be ready for viewing in broswer.
 
 4. Run localhost:4200 on browser.
 
@@ -26,7 +26,8 @@ Following are frontend & backend components
 
 1. Create MySql Database & Change the configuration in DatabaseConfig.java
 2. Use `project_mysql_script.sql` file to create database object and sample records.
-3. Run the spring project.
+3. `build.gradle` file contains package dependencies including mqsql java connector. 
+3. Open the project in Eclipse or Spring Tool Suite and run the application as spring boot app.
 
 
 

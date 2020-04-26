@@ -5,12 +5,12 @@
     "\\src\\app",
     "\\src\\app\\customers",
     "\\src\\app\\customers\\add-customer",
-    "\\src\\app\\customers\\edit-customer",
     "\\src\\app\\orders",
     "\\src\\app\\orders\\add-order",
     "\\src\\app\\shared",
-    "\\src\\assets"
+    "\\src\\assets",
+    "\\src\\environments"
   ],
-  "SelectedNode": "\\server",
+  "SelectedNode": "\\src\\app\\customers\\add-customer\\add-customer.component.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -53,8 +53,8 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-info" (click)="addItem()">Add Item</button>
           <button type="submit" class="btn btn-success" [disabled]="!addorderform.valid">Submit Order</button>
-          <button type="button" class="btn btn-danger" (click)="close()">Close</button>
-        </div>
+          <a [routerLink]="['/orders', customer.customerId]"><button type="button" class="btn btn-danger">Close</button></a>
+</div>
 
       </form>
     </div>

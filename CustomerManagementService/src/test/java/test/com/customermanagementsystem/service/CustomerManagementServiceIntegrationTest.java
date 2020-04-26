@@ -1,4 +1,4 @@
-package test.com.kennesaw.customermanagementsystem.service;
+package test.com.customermanagementsystem.service;
 
 import java.util.logging.Logger;
 
@@ -17,11 +17,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.kennesaw.customermanagementsystem.Application;
-import com.kennesaw.customermanagementsystem.service.CustomerManagementService;
-import com.kennesaw.customermanagementsystem.to.CustomerInfo;
-import com.kennesaw.customermanagementsystem.to.CustomerManagementResponse;
-import com.kennesaw.customermanagementsystem.manager.CustomerManager;
+import com.customermanagementsystem.Application;
+import com.customermanagementsystem.manager.CustomerManager;
+import com.customermanagementsystem.service.CustomerManagementService;
+import com.customermanagementsystem.to.CustomerInfo;
+import com.customermanagementsystem.to.CustomerManagementResponse;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

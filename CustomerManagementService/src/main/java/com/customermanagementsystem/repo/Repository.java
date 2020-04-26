@@ -1,4 +1,4 @@
-package com.kennesaw.customermanagementsystem.repo;
+package com.customermanagementsystem.repo;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -11,10 +11,10 @@ import java.util.logging.Logger;
 
 import org.springframework.stereotype.Component;
 
-import com.kennesaw.customermanagementsystem.config.DatabaseConfig;
-import com.kennesaw.customermanagementsystem.to.CustomerInfo;
-import com.kennesaw.customermanagementsystem.to.ItemInfo;
-import com.kennesaw.customermanagementsystem.to.OrderInfo;
+import com.customermanagementsystem.config.DatabaseConfig;
+import com.customermanagementsystem.to.CustomerInfo;
+import com.customermanagementsystem.to.ItemInfo;
+import com.customermanagementsystem.to.OrderInfo;
 
 @Component
 public class Repository {

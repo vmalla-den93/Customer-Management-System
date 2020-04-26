@@ -28,17 +28,19 @@ export class AddCustomerComponent implements OnInit {
 
   }
 
-  save() {
+  save(customerForm: NgForm) {
     this.dataService.addCustomer(this.customer)
       .subscribe(data => {
         this.customer = data
         this.submitted = true
+        customerForm.resetForm()
+        this.errorMessage = ""
       },
         error => {
           console.log(error)
           if (error instanceof HttpErrorResponse) {
             if (error.status === 409) {
-              this.errorMessage = "EmailId Already Exists"
+              this.errorMessage   = "EmailId Already Exists"
             }
           }
           else
@@ -48,9 +50,7 @@ export class AddCustomerComponent implements OnInit {
 
 
   onSubmit(customerForm: NgForm) {
-    this.save()
-
-    customerForm.resetForm()
+    this.save(customerForm)
     
   }
 

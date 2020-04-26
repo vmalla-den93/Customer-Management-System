@@ -1,4 +1,4 @@
-package com.kennesaw.customermanagementsystem.service;
+package com.customermanagementsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kennesaw.customermanagementsystem.manager.CustomerManager;
-import com.kennesaw.customermanagementsystem.to.CustomerInfo;
-import com.kennesaw.customermanagementsystem.to.CustomerManagementResponse;
-import com.kennesaw.customermanagementsystem.to.OrderInfo;
-import com.kennesaw.customermanagementsystem.util.Constants;
+import com.customermanagementsystem.manager.CustomerManager;
+import com.customermanagementsystem.to.CustomerInfo;
+import com.customermanagementsystem.to.CustomerManagementResponse;
+import com.customermanagementsystem.to.OrderInfo;
+import com.customermanagementsystem.util.Constants;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

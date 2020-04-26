@@ -1,4 +1,4 @@
-package com.kennesaw.customermanagementsystem.manager;
+package com.customermanagementsystem.manager;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,13 +8,13 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.kennesaw.customermanagementsystem.repo.Repository;
-import com.kennesaw.customermanagementsystem.to.CustomerInfo;
-import com.kennesaw.customermanagementsystem.to.ErrorResponse;
-import com.kennesaw.customermanagementsystem.to.ItemInfo;
-import com.kennesaw.customermanagementsystem.to.OrderInfo;
-import com.kennesaw.customermanagementsystem.to.CustomerManagementResponse;
-import com.kennesaw.customermanagementsystem.util.Constants;
+import com.customermanagementsystem.repo.Repository;
+import com.customermanagementsystem.to.CustomerInfo;
+import com.customermanagementsystem.to.CustomerManagementResponse;
+import com.customermanagementsystem.to.ErrorResponse;
+import com.customermanagementsystem.to.ItemInfo;
+import com.customermanagementsystem.to.OrderInfo;
+import com.customermanagementsystem.util.Constants;
 
 @Component
 public class CustomerManager {

@@ -1,4 +1,4 @@
-package com.kennesaw.customermanagementsystem;
+package com.customermanagementsystem;
 
 
 import org.springframework.boot.SpringApplication;
@@ -18,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@ComponentScan("com.kennesaw.customermanagementsystem")
+@ComponentScan("com.customermanagementsystem")
 public class Application {
 
 	public static void main(String[] args) {

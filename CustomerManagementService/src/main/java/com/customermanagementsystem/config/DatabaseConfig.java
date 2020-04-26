@@ -1,4 +1,4 @@
-package com.kennesaw.customermanagementsystem.config;
+package com.customermanagementsystem.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

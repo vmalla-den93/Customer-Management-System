@@ -1,4 +1,4 @@
-package com.kennesaw.customermanagementsystem.to;
+package com.customermanagementsystem.to;
 
 import java.util.List;
 

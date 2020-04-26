@@ -1,4 +1,4 @@
-package com.kennesaw.customermanagementsystem.util;
+package com.customermanagementsystem.util;
 
 public class Constants {
 	

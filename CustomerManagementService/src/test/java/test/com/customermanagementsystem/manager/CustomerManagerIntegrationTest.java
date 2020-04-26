@@ -1,4 +1,4 @@
-package test.com.kennesaw.customermanagementsystem.manager;
+package test.com.customermanagementsystem.manager;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -12,12 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.kennesaw.customermanagementsystem.Application;
-import com.kennesaw.customermanagementsystem.manager.CustomerManager;
-import com.kennesaw.customermanagementsystem.to.CustomerInfo;
-import com.kennesaw.customermanagementsystem.to.CustomerManagementResponse;
-import com.kennesaw.customermanagementsystem.to.OrderInfo;
-import com.kennesaw.customermanagementsystem.to.ItemInfo;
+import com.customermanagementsystem.Application;
+import com.customermanagementsystem.manager.CustomerManager;
+import com.customermanagementsystem.to.CustomerInfo;
+import com.customermanagementsystem.to.CustomerManagementResponse;
+import com.customermanagementsystem.to.ItemInfo;
+import com.customermanagementsystem.to.OrderInfo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

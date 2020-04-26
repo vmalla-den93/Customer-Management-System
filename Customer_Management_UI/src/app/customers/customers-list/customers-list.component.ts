@@ -64,7 +64,7 @@ export class CustomersListComponent implements OnInit {
 
   reloadData() {
     this.dataService.getCustomers().subscribe(data => {
-      this.filteredCustomers = <ICustomer[]>data
+      this.filteredCustomers = this.customers = <ICustomer[]>data
       this.calculateOrders();
     });
     
